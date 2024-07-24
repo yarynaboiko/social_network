@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'groups',
     'news',
     'profiles',
+    'posts',
 
 ]
 

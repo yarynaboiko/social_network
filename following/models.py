@@ -3,8 +3,8 @@ from django.db import models
 
 
 class Friend(models.Model):
-    from_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    to_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    from_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='from_friend')
+    to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='to_friend')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -18,8 +18,8 @@ class Friend(models.Model):
 
 
 class FriendRequest(models.Model):
-    from_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    to_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    from_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='from_request')
+    to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='to_request')
     created_at = models.DateTimeField(auto_now_add=True)
     accepted = models.BooleanField(default=False)
 
@@ -34,8 +34,8 @@ class FriendRequest(models.Model):
 
 
 class Subscriber(models.Model):
-    from_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    to_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    from_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='from_subscribe')
+    to_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='to_subscribe')
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
