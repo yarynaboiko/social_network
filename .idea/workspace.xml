@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adc69beb-e231-4032-afb9-3408f43b3b5d" name="Changes" comment="Created new project">
+    <list default="true" id="adc69beb-e231-4032-afb9-3408f43b3b5d" name="Changes" comment="створила модель групи">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groups/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/groups/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,11 +129,20 @@
       <option name="project" value="LOCAL" />
       <updated>1720625818420</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="створила модель групи">
+      <option name="closed" value="true" />
+      <created>1721731372583</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1721731372583</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created new project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created new project" />
+    <MESSAGE value="створила модель групи" />
+    <option name="LAST_COMMIT_MESSAGE" value="створила модель групи" />
   </component>
 </project>
