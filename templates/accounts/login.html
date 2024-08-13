@@ -1,10 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h1>Увійти</h1>
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-secondary" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button type="submit" class="btn btn-light my-3">Увійти</button>
 
-</body>
-</html>
+        <a href="{% url 'register' %}" class="m-3 ">Створити профіль</a>
+    </form>
+    </div>
+
+{% endblock %}
