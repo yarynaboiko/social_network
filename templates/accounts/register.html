@@ -11,9 +11,19 @@
         {% endfor %}
 
     {% endif %}
-    <form method="post" action="{% url 'register' %}">
+    <form class = 'row g-3' method="post" action="{% url 'register' %}" style="max-width: 900px">
         {% csrf_token %}
-        {{ form.as_div }}
+        {% for field in form %}
+        <div class="col-md-4">
+            {{field.label}}
+            {{field}}
+            {% if field.errors %}
+            <div class="invalid-feedback">
+                {{field.errors|striptags}}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
         <button type="submit" class="btn btn-light my-3">Реєстрація</button>
 
         <a href="{% url 'login' %}" class="m-3 text-white">Увійти в профіль</a>
