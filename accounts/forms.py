@@ -31,6 +31,6 @@ class UserRegisterForm(UserCreationForm):
         for field_name, field in self.fields.items():
             field.widget.attrs.update({'class': 'form-control my-2'})
             if self.errors.get(field_name):
-                field.widget.attrs.update({'class': 'form-control my-2 is-invalid'})
+                field.widget.attrs.update({'class': 'form-control my-2 is-invalid', 'required': 'required'})
 
         self.fields['birthday'].widget = forms.DateInput(attrs={"type": "date", 'class': "form-control mb-2"})

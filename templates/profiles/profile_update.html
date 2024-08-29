@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h1 class="my-4">Заповнити профіль</h1>
+        {% if messages %}
+
+        {% for message in messages %}
+            <div class="alert alert-secondary" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+    <form class = 'row g-3' method="post" style="max-width: 900px" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="col-md-4">
+            {{field.label}}
+            {{field}}
+            {% if field.errors %}
+            <div class="invalid-feedback">
+                {{field.errors|striptags}}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-light my-3">Зберегти</button>
+    </form>
+    </div>
+
+{% endblock %}
