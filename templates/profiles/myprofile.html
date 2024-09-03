@@ -13,7 +13,8 @@
             {% endif %}
         </div>
         <div class="col-8">
-            <h3>{{profile.name}} {{profile.surname}}</h3>
+            <h3 class="my-3">{{profile.name}} {{profile.surname}}</h3>
+            <a href="{% url 'profile-update' %}" class="btn btn-outline-dark mb-3">Редагувати профіль</a>
             <div class="row">
                 <div class="col">{{profile.profile_posts.count}} дописів</div>
                 <div class="col">{{profile.user.from_friend.count}} друзів</div>
