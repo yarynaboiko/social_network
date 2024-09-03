@@ -2,23 +2,36 @@
 {% block content %}
 <div class="container">
     {% if profile.cover %}
-    <div class="row profile-cover" style="background-image: url({{profile.cover.url}})">
+    <div class=" profile-cover" style="background-image: url({{profile.cover.url}})">
     </div>
     {% endif %}
     <div class="row">
-        <div class="col-3 p-4">
+        <div class="col-3 col-md-4 p-4">
             {% if profile.image %}
             <div class="profile-image" style="background-image: url({{profile.cover.url}})">
             </div>
+            {% else %}
+            {% load static %}
+            <div class="profile-image" style="background-image: url({% static 'img/noimage.jpg' %})">
+            </div>
             {% endif %}
         </div>
-        <div class="col-8">
+        <div class="col-9 col-md-8">
             <h3 class="my-3">{{profile.name}} {{profile.surname}}</h3>
-            <a href="{% url 'profile-update' %}" class="btn btn-outline-dark mb-3">Редагувати профіль</a>
+            {% block buttons %}
+                <a href="{% url 'profile-update' %}" class="btn btn-outline-dark mb-1 ">Редагувати профіль</a>
+            {% endblock %}
+        </div>
             <div class="row">
-                <div class="col">{{profile.profile_posts.count}} дописів</div>
-                <div class="col">{{profile.user.from_friend.count}} друзів</div>
-                <div class="col">{{profile.user.to_subscribe.count}} підписників</div>
+                <div class="col-md-4"></div>
+                <div class="col"><b>{{profile.profile_posts.count}} дописів</b></div>
+                <div class="col"><b>{{profile.user.get_friends_count}} друзів</b></div>
+                <div class="col"><b>{{profile.user.to_subscribe.count}} підписників</b></div>
+            </div>
+        <div class="row">
+                <div class="col-md-4"></div>
+            <div class="col my-3">
+                {{profile.status}}
             </div>
         </div>
     </div>

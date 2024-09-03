@@ -15,6 +15,9 @@ class User(AbstractUser):
     def __str__(self):
         return f'{self.username} - {self.first_name} {self.last_name}'
 
+    def get_friends_count(self):
+        return self.to_friend.count() + self.from_friend.count()
+
     class Meta:
         verbose_name = 'Користувач'
         verbose_name_plural = 'Користувачі'

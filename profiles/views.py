@@ -26,3 +26,8 @@ class ProfileUpdateView(BaseProfileView, UpdateView):
 class ProfileDetailView(BaseProfileView, DetailView):
     template_name = 'profiles/myprofile.html'
 
+
+class UserProfileDetailView(DetailView):
+    model = Profile
+    template_name = 'profiles/userprofile.html'
+    context_object_name = 'profile'
