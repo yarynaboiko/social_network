@@ -1,5 +1,29 @@
 {% extends "profiles/myprofile.html" %}
 {% block buttons %}
-    <a href="{% url 'profile-update' %}" class="btn btn-outline-dark mb-1 ">Додати в друзі</a>
-    <a href="{% url 'profile-update' %}" class="btn btn-outline-dark mb-1 ">Підписатися</a>
+<div class="d-flex">
+    {% if is_friend_request %}
+    <form action="{% url 'friend-request-delete' profile.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-dark mb-1 ">Скасувати запит </button>
+    </form>
+    {% else %}
+    <form action="{% url 'friend-request-create' profile.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-dark mb-1 ">Додати в друзі</button>
+    </form>
+    {% endif %}
+
+    {% if is_subscribed %}
+    <form action="{% url 'subscriber-delete' profile.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-dark mb-1 ">Відписатися</button>
+    </form>
+    {% else %}
+    <form action="{% url 'subscriber-create' profile.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-dark mb-1 ">Підписатися</button>
+    </form>
+    {% endif %}
+</div>
+
 {% endblock %}

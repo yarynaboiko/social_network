@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 
 from django.views.generic import UpdateView, DetailView, View
 
+from following.models import Subscriber, FriendRequest
 from profiles.forms import ProfileUpdateForm
 from profiles.models import Profile
 
@@ -31,3 +32,15 @@ class UserProfileDetailView(DetailView):
     model = Profile
     template_name = 'profiles/userprofile.html'
     context_object_name = 'profile'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            subscribe = Subscriber.objects.filter(from_user=self.request.user, to_user=self.get_object().user)
+            if subscribe:
+                context['is_subscribed'] = True
+            friend_request = FriendRequest.objects.filter(from_user=self.request.user, to_user=self.get_object().user)
+            if friend_request:
+                context['is_friend_request'] = True
+
+        return context

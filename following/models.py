@@ -41,6 +41,7 @@ class Subscriber(models.Model):
     class Meta:
         verbose_name = 'Підписник'
         verbose_name_plural = 'Підписники'
+        unique_together = ('from_user', 'to_user')
         ordering = ['created_at']
 
     def __str__(self):
