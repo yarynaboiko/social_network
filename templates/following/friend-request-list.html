@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2 class="my-5">Запити на дружбу</h2>
+    {% for request in friend_requests%}
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-4 col-md-3">
+                <img src="{{request.from_user.profile.image.url}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-8 col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{request.from_user.profile.name}} {{request.from_user.profile.surname}}</h5>
+                    <form action="{% url 'friend-request-accept' request.id %}" method="post">
+                        {% csrf_token %}
+                        <button class = 'btn btn-outline-dark mb-1' type = 'submit'>Прийняти запит</button>
+                    </form>
+                    <form action="{% url 'friend-request-decline' request.id %}" method="post">
+                        {% csrf_token %}
+                        <button class = 'btn btn-outline-dark mb-1' type = 'submit'>Видалити запит</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

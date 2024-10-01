@@ -1,5 +1,6 @@
 {% extends "profiles/myprofile.html" %}
 {% block buttons %}
+{% if not request.user == profile.user %}
 <div class="d-flex">
     {% if is_friend_request %}
     <form action="{% url 'friend-request-delete' profile.id %}" method="post">
@@ -25,5 +26,5 @@
     </form>
     {% endif %}
 </div>
-
+{% endif %}
 {% endblock %}
