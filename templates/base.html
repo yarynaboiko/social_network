@@ -27,6 +27,9 @@
 
       </ul>
         {% if request.user.is_authenticated %}
+        <a href="{% url 'profile-post-create' %}" class="btn btn-outline-secondary me-1">
+            <i class="bi bi-plus-circle"></i>
+        </a>
         <a href="{% url 'friend-request-list' %}" class="btn btn-outline-secondary me-1">
             <i class="bi bi-envelope-plus"></i>
         </a>

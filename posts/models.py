@@ -14,6 +14,14 @@ class Post(models.Model):
     group = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True, null=True, related_name='group_posts')
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, blank=True, null=True, related_name='profile_posts')
 
+    def __str__(self):
+        return f'{self.author}  {self.created_at} - {self.content}'
+
+    class Meta:
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Пости'
+        ordering = ['-created_at']
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
@@ -22,3 +30,11 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата публікації')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата оновлення')
     comments_media = models.FileField(upload_to='comments_media/', verbose_name='Медіа-файл', blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.from_user}  {self.created_at} - {self.text}'
+
+    class Meta:
+        verbose_name = 'Коментар'
+        verbose_name_plural = 'Коментарі'
+        ordering = ['created_at']

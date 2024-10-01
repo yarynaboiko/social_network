@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h1 class="my-4">Новий пост</h1>
+    <form method="post" action="" style="max-width: 500px" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button type="submit" class="btn btn-light my-3">Опублікувати</button>
+
+        <a href="{% url 'profile-my-detail' %}" class="m-3 ">Скасувати</a>
+    </form>
+    </div>
+
+{% endblock %}

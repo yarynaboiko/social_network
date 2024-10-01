@@ -26,6 +26,11 @@ nav{
     margin: 0 auto;
 }
 
+.profile-image.preview{
+    width: 70px;
+    height: 70px;
+}
+
 @media screen and (max-width: 768px) {
     .profile-image{
         width: 80px;
