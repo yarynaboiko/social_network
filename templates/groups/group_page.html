@@ -1,30 +1,56 @@
-<div class="card my-2" >
-    <a href="{% url 'profile-user-detail' post.profile.pk %}" class="text-decoration-none">
-  <div class="card-header">
-      <div class="row align-items-center">
-      <div class="col-2 ">
-          {% if post.profile.image %}
-            <div class="profile-image preview" style="background-image: url({{post.profile.image.url}})">
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-3 col-md-4 p-4">
+            {% if group.image %}
+            <div class="profile-image" style="background-image: url({{group.image.url}})">
             </div>
             {% else %}
             {% load static %}
-            <div class="profile-image preview" style="background-image: url({% static 'img/noimage.jpg' %})">
+            <div class="profile-image" style="background-image: url({% static 'img/noimage.jpg' %})">
             </div>
             {% endif %}
-      </div>
-      <div class="col">
-          <h6>{{post.profile.name}} {{post.profile.surname}}</h6>
-          <small class="text-body-secondary ">{{ post.created_at|date:"d M H:i" }}</small>
-      </div>
-  </div>
-      </a>
-    {% if post.media %}
-        <img src="{{post.media.url}}" style = '' class="card-img-top" alt="...">
-    {% endif %}
-  <div class="card-body">
-      {% if post.media %}
-        <p class="card-text">{{ post.content }}</p>
-    {% endif %}
+        </div>
+        <div class="col-9 col-md-8">
+            <h3 class="my-3">{{group.name}} </h3>
+            {% block buttons %}
+            {% if member %}
+            <form action="{% url 'group-leave' group.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-dark mb-1 ">Вийти з групи</button>
+            </form>
+            {% else %}
+            <form action="{% url 'group-join' group.pk %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-dark mb-1 ">Вступити в групу</button>
+            </form>
+            {% endif %}
+            {% if is_admin %}
+            <a href="{% url 'group-update' group.pk %}" class="btn btn-outline-dark mb-1 ">Редагувати</a>
+            {% endif %}
+            {% endblock %}
+        </div>
 
-  </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col"><b>{{group.group_posts.count}} дописів</b></div>
+            <div class="col"><b>{{group.members.count}} учасників</b></div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col my-3">
+                {{group.description}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col my-3">
+                {% for post in group.group_posts.all %}
+                {% include 'posts/post.html'%}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
+{% endblock %}

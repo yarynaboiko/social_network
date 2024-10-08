@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="container">
-        <h1 class="my-4">Створення групи</h1>
+        <h1 class="my-4">Редагування групи</h1>
     <form method="post" action="" style="max-width: 500px" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_div }}
-        <button type="submit" class="btn btn-light my-3">Створити</button>
+        <button type="submit" class="btn btn-light my-3">Зберегти</button>
 
         <a href="{% url 'profile-my-detail' %}" class="m-3 ">Скасувати</a>
     </form>

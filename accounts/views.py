@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
@@ -16,7 +17,7 @@ class UserLoginView(LoginView):
     form_class = UserLoginForm
 
 
-class UserLogoutView(LogoutView):
+class UserLogoutView(LoginRequiredMixin, LogoutView):
     next_page = reverse_lazy('login')
 
 
