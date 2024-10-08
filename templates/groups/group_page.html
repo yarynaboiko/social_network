@@ -1,0 +1,30 @@
+<div class="card my-2" >
+    <a href="{% url 'profile-user-detail' post.profile.pk %}" class="text-decoration-none">
+  <div class="card-header">
+      <div class="row align-items-center">
+      <div class="col-2 ">
+          {% if post.profile.image %}
+            <div class="profile-image preview" style="background-image: url({{post.profile.image.url}})">
+            </div>
+            {% else %}
+            {% load static %}
+            <div class="profile-image preview" style="background-image: url({% static 'img/noimage.jpg' %})">
+            </div>
+            {% endif %}
+      </div>
+      <div class="col">
+          <h6>{{post.profile.name}} {{post.profile.surname}}</h6>
+          <small class="text-body-secondary ">{{ post.created_at|date:"d M H:i" }}</small>
+      </div>
+  </div>
+      </a>
+    {% if post.media %}
+        <img src="{{post.media.url}}" style = '' class="card-img-top" alt="...">
+    {% endif %}
+  <div class="card-body">
+      {% if post.media %}
+        <p class="card-text">{{ post.content }}</p>
+    {% endif %}
+
+  </div>
+</div>
