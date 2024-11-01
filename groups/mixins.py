@@ -9,3 +9,13 @@ class UserIsAdminMixin(object):
         if not member.is_admin:
             raise PermissionDenied
         return super(UserIsAdminMixin, self).dispatch(request, *args, **kwargs)
+
+
+class UserIsMemberMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        instance = self.get_object()
+        member = instance.members.all().filter(user=request.user).first()
+
+        if not member:
+            raise PermissionDenied
+        return super(UserIsMemberMixin, self).dispatch(request, *args, **kwargs)

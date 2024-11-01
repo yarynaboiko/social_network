@@ -46,6 +46,7 @@
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col my-3">
+                <a href="{% url 'group-post-create' group.pk %}" class="btn btn-outline-dark mb-1 ">Додати пост</a>
                 {% for post in group.group_posts.all %}
                 {% include 'posts/post.html'%}
                 {% endfor %}

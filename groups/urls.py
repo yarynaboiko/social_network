@@ -7,5 +7,6 @@ urlpatterns = [
     path('<int:pk>', views.GroupDetailView.as_view(), name='group-detail'),
     path('<int:pk>/join', views.GroupMemberCreateView.as_view(), name='group-join'),
     path('<int:pk>/leave', views.GroupMemberDeleteView.as_view(), name='group-leave'),
+    path('<int:pk>/posts/create', views.GroupPostCreateView.as_view(), name='group-post-create'),
 
 ]

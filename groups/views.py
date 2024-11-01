@@ -4,8 +4,10 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, DeleteView
 
 from groups.forms import GroupForm
-from groups.mixins import UserIsAdminMixin
+from groups.mixins import UserIsAdminMixin, UserIsMemberMixin
 from groups.models import Group, GroupMember
+from posts.forms import PostForm
+from posts.models import Post
 
 
 # Create your views here.
@@ -73,3 +75,19 @@ class GroupMemberDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('group-detail', kwargs={'pk': self.kwargs['pk']})
+
+
+class GroupPostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    template_name = 'posts/new_post.html'
+    form_class = PostForm
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        group = get_object_or_404(Group, pk=self.kwargs['pk'])
+        form.instance.group = group
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('group-detail', kwargs={'pk': self.kwargs['pk']})
+
