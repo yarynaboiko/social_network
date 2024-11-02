@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView, DeleteView
+from django.views.generic import CreateView, UpdateView, DetailView, DeleteView, ListView
 
 from groups.forms import GroupForm
 from groups.mixins import UserIsAdminMixin, UserIsMemberMixin
@@ -91,4 +91,13 @@ class GroupPostCreateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('group-detail', kwargs={'pk': self.kwargs['pk']})
 
+
+class GroupListView(LoginRequiredMixin, ListView):
+    model = Group
+    template_name = 'groups/group_list.html'
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(members__user=self.request.user)
+        return queryset
 
