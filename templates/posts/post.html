@@ -51,11 +51,24 @@
 
   </div>
 
-<div class="card-footer text-body-secondary">
-    <form action="" method="post">
+<div class="card-footer text-body-secondary d-flex">
+    <form class="me-2" action="{% url 'post-like' post.id%}" method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-outline-danger mb-1"><i class="bi bi-suit-heart"></i></button>
+        <button type="submit" class="btn btn-outline-danger mb-1"><i class="bi bi-suit-heart"></i>
+        {{post.likes.count}}
+        </button>
     </form>
+    <form action="{% url 'post-share' post.id%}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-secondary mb-1"><i class="bi bi-arrow-repeat"></i>
+        {{post.shares.count}}
+        </button>
+    </form>
+
+    <a href="{% url 'post-comments' post.id%}" class="btn btn-outline-primary mb-1 ms-2"> <i class="bi bi-chat-square"></i>
+    {{post.comments.count}}
+    </a>
+
 </div>
 
 </div>

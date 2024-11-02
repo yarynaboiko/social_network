@@ -90,3 +90,4 @@ class FriendRequestDeclineView(LoginRequiredMixin, View):
         friend_request = get_object_or_404(FriendRequest, pk=self.kwargs['request_id'], to_user=self.request.user)
         friend_request.delete()
         return HttpResponseRedirect(reverse('friend-request-list'))
+

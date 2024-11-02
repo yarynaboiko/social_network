@@ -91,3 +91,4 @@ class GroupPostCreateView(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse_lazy('group-detail', kwargs={'pk': self.kwargs['pk']})
 
+
