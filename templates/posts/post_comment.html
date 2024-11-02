@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
+<div class="container" style="max-width: 600px;">
     <div class="card my-2">
         {% if post.profile %}
         <a href="{% url 'profile-user-detail' post.profile.pk %}" class="text-decoration-none">
@@ -73,17 +73,34 @@
                         </div>
 
                     </div>
-                    <form method="post" action="" style="max-width: 500px" class="input-group mb-3"
+                    <h2>Коментарі</h2>
+                    <form method="post" action="" style="max-width: 500px" class=""
                           enctype="multipart/form-data">
                         {% csrf_token %}
-                        {{ form.as_div }}
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder=""
-                                   aria-label="Example text with button addon" aria-describedby="button-addon1">
-                            <button class="btn btn-outline-dark" type="submit" id="button-addon1">Додати коментар
+                            {{ form.as_div }}
+                            <button class="btn btn-outline-dark" type="submit">Додати коментар
                             </button>
-                        </div>
                     </form>
+
+                    <div class="comments">
+
+                        {% for comment in post.comments.all %}
+                        <div class="card my-2">
+                            <div class="card-header">
+                            <a href="{% url 'profile-user-detail' comment.from_user.profile.pk %}" class="text-decoration-none">
+                                {{ comment.from_user.username }}
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    {{ comment.text }}
+                                </p>
+                                <small class="text-body-secondary ">{{ comment.created_at|date:"d M H:i" }}</small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
                 </div>
 
                 {% endblock %}

@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="adc69beb-e231-4032-afb9-3408f43b3b5d" name="Changes" comment="створила модель групи">
-      <change afterPath="$PROJECT_DIR$/templates/posts/post_comment.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/following/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/following/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groups/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/groups/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/posts/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/posts/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/posts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/posts/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/posts/post.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/posts/post_comment.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/posts/post_comment.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,7 +288,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730469912479</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="створила модель групи">
+      <option name="closed" value="true" />
+      <created>1730551523707</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1730551523707</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
