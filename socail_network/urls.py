@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
 
+from posts import views
 from socail_network import settings
 
 urlpatterns = [
@@ -27,6 +28,7 @@ urlpatterns = [
     path('following/', include('following.urls')),
     path('posts/', include('posts.urls')),
     path('groups/', include('groups.urls')),
+    path('', views.NewsFeedView.as_view(), name='post-news'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

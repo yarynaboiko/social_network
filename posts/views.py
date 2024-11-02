@@ -1,11 +1,16 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import models
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
+from accounts.models import User
+from following.models import Friend
+from groups.models import Group
 from posts.forms import PostForm, CommentForm
 from posts.models import Post, Comment
+from profiles.models import Profile
 
 
 # Create your views here.
@@ -63,3 +68,14 @@ class PostCommentView(LoginRequiredMixin, CreateView):
         return reverse_lazy('post-comments', kwargs={'post_id': self.kwargs['post_id']})
 
 
+class NewsFeedView(LoginRequiredMixin, ListView):
+    model = Post
+    template_name = 'posts/post_list.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = super().get_queryset()
+        groups = Group.objects.filter(members__user=self.request.user)
+        friends = Friend.objects.filter(models.Q(from_user=self.request.user) | models.Q(to_user=self.request.user))
+        queryset = Post.objects.all()
+        return queryset

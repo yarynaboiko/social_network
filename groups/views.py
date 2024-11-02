@@ -95,6 +95,7 @@ class GroupPostCreateView(LoginRequiredMixin, CreateView):
 class GroupListView(LoginRequiredMixin, ListView):
     model = Group
     template_name = 'groups/group_list.html'
+    context_object_name = 'groups'
 
     def get_queryset(self, *args, **kwargs):
         queryset = super().get_queryset()
